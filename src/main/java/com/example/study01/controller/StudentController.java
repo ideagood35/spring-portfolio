@@ -1,7 +1,9 @@
 package com.example.study01.controller;
 
 import com.example.study01.dto.StudentDTO;
+import com.example.study01.entity.Comment;
 import com.example.study01.entity.Student;
+import com.example.study01.service.CommentService;
 import com.example.study01.service.StudentService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -17,13 +19,17 @@ import java.util.List;
 @AllArgsConstructor
 public class StudentController {
     private StudentService studentService;
+    private CommentService commentService;
 
 
     @GetMapping("/students")
     public String getStudents(Model model) {
         List<Student> studentsList = studentService.findAll();
         System.out.println(studentsList);
+        List<Comment> commentList = commentService.findAll();
+
         model.addAttribute("students", studentsList);
+        model.addAttribute("comments", commentList);
         return "students";
     }
 
