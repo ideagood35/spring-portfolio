@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Thymeleaf Test</title>
+    <meta charset="UTF-8">
+
+    <!-- 합쳐지고 최소화된 최신 CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+
+    <!-- 부가적인 테마 -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+
+    <!-- 제이쿼리 -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+
+    <script type="text/javascript" src="/js/bootstrap.js"></script>
+
+    <link rel="stylesheet" href="/css/common.css">
+</head>
+<body>
+<h1>학생목록</h1>
+
+<button onclick="location.href='/new-student'">학생등록</button>
+<table>
+    <thead>
+    <tr>
+        <th>번호</th>
+        <th>이름</th>
+        <th>주소</th>
+        <th>입학일</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="student : ${students}" th:onclick="onClickRow([[${student.studentId}]])" class="table-row">
+        <td th:text="${student.studentId}"></td>
+        <td th:text="${student.studentName}"></td>
+        <td th:text="${student.studentAddress}"></td>
+        <td th:text="${student.admissionDate}"></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
+<script>
+    function onClickRow(studentId) {
+        location.href = "/student/" + studentId;
+    }
+</script>
+

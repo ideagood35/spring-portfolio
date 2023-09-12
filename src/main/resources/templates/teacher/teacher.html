@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Thymeleaf Test</title>
+    <meta charset="UTF-8">
+
+    <!-- 합쳐지고 최소화된 최신 CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+
+    <!-- 부가적인 테마 -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+
+    <!-- 제이쿼리 -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+
+    <script type="text/javascript" src="/js/bootstrap.js"></script>
+
+    <link rel="stylesheet" href="/css/common.css">
+</head>
+<body>
+<h1>강사 상세보기/수정</h1>
+
+<input type="button" value="목록으로" onclick="location.href='/teacher'">
+
+<form action="/del-teacher" method="post">
+    <input type="hidden" name="id" th:value="${teacher.id}">
+    <input type="submit" value="삭제">
+</form>
+
+<form action="/save-teacher" method="post">
+    <input type="hidden" name="id" th:value="${teacher.id}">
+    <table>
+        <tr>
+            <td>이름</td>
+            <td><input type="text" name="name" th:value="${teacher.name}"></td>
+        </tr>
+        <tr>
+            <td>과목</td>
+            <td><input type="text" name="subject" th:value="${teacher.subject}"></td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <input type="submit" value="수정">
+            </td>
+            <td>
+
+            </td>
+        </tr>
+    </table>
+</form>
+
+</body>
+</html>
