@@ -1,10 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+            integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
 hello World!
+
+<button type="button" onclick="getTeachers()">강사목록조회</button>
+<button type="button" onclick="getTeachers()">추가</button>
+
 </body>
+
 </html>
+<script>
+    function getTeachers() {
+        var settings = {
+            "url": "http://localhost:8080/api/teachers",
+            "method": "GET",
+            "timeout": 0,
+        };
+
+        $.ajax(settings).done(function (response) {
+            console.log(response);
+        });
+    }
+
+    function addTeacher(){
+        var settings = {
+            "url": "http://localhost:8080/api/teacher",
+            "method": "POST",
+            "timeout": 0,
+            "headers": {
+                "Content-Type": "application/json"
+            },
+            "data": JSON.stringify({
+                "name": "김말동",
+                "subject": "수학"
+            }),
+        };
+
+        $.ajax(settings).done(function (response) {
+            console.log(response);
+        });
+    }
+</script>

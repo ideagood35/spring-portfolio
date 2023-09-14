@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 @AllArgsConstructor
 public class CommentApiController {
     CommentService commentService;
-    @PostMapping("/api/add-comment")
+    @PostMapping("/api/add-comment")//요청 받을 주소 홈페이지 주소창 주소는 아니다
     public CommonResponseDTO addComment(@RequestBody CommentDTO commentDTO) {
         commentService.save(commentDTO);
         return CommonResponseDTO.builder()

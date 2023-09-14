@@ -1,5 +1,6 @@
 package com.example.study01.controller.api;
 
+import com.example.study01.dto.CommonResponseDTO;
 import com.example.study01.dto.TeacherDTO;
 import com.example.study01.entity.Teacher;
 import com.example.study01.service.TeacherService;
@@ -37,15 +38,16 @@ public class TeacherApiController {
         return "teacher/teacher-new";//등록페이드
     }
 
-    @PostMapping("/save-teacher")//받아준다
-    public String saveTeacher(@ModelAttribute TeacherDTO teacherDTO) {
-        teacherService.save(teacherDTO);
-        return "redirect:teachers";
+    @PostMapping("/teacher")//받아준다
+    public CommonResponseDTO saveTeacher(@RequestBody TeacherDTO teacherDTO) {
+        teacherService.save(teacherDTO);//dto
+        CommonResponseDTO responseDTO =new CommonResponseDTO(true,"성공",null);
+        return responseDTO;
     }
 
-    @PostMapping("/del-teacher")
-    public String delStudent(@ModelAttribute TeacherDTO teacherDTO) {
-        teacherService.delete(teacherDTO);
-        return "redirect:teachers";
+    @DeleteMapping("/teacher")
+    public CommonResponseDTO delTeacher(@RequestBody TeacherDTO teacherDTO){
+        CommonResponseDTO responseDTO = new CommonResponseDTO(true,"성공",null);
+        return responseDTO;
     }
 }

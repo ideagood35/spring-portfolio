@@ -11,7 +11,8 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
 
     <!-- 제이쿼리 -->
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+            integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 
@@ -33,7 +34,7 @@
     </tr>
     </thead>
     <tbody>
-    <tr th:each="student : ${students}" th:onclick="onClickRow([[${student.studentId}]])" class="table-row">
+    <tr th:each="student : ${students}" th:onclick="'onClickRow(' + ${student.studentId} + ');'" class="table-row">
         <td th:text="${student.studentId}"></td>
         <td th:text="${student.studentName}"></td>
         <td th:text="${student.studentAddress}"></td>
@@ -53,26 +54,24 @@
     function onClickRow(studentId) {
         location.href = "/student/" + studentId;
     }
-
+    /////////////
     function addComment() {
         var comment = $("#comment").val();
-        //서버로 comment 전송 )(ajax)
-        // 서버로 comment 전송 (ajax)
+        ////서버로 comment 전송 (ajax)//////
         $.ajax({
-            url: "/api/add-comment" ,
-            type: 'post',
-            data: JSON.stringify({
-                comment: comment
-            }),
+            url: "/api/add-comment",//주소
+            type: 'post',//전송타입
+            data: JSON.stringify({comment: comment}),//전송 데이터
             contentType: "application/json; charset=utf-8", //헤더의 Content-Type을 설정
-            success: function(res) {
+            success: function (res) {
                 console.log(res);
                 $("#comment").val("");//지우기
             },
-            error: function(xhr, status, error) {
+            error: function (xhr, status, error) {
                 console.log(error);
             }
         })
+        /////////////////////////////////////
         $("#commentContainer").append("<div>" + comment + "</div>");
     }
 </script>
